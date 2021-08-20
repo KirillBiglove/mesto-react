@@ -1,0 +1,9 @@
+.profile__avatar-change-icon {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  max-height: 120px;
+  max-width: 120px;
+  padding: 0;
+  background-image: url(../../../../src/images/change-profile-icon.svg);
+  cursor: pointer;
+}

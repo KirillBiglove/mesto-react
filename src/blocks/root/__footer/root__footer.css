@@ -1,0 +1,19 @@
+.root__footer {
+  max-width: 880px;
+  display: flex;
+  margin: 0 auto;
+  padding: 66px 0 60px;
+}
+
+@media (max-width: 910px){
+  .root__footer {
+    max-width: 570px;
+  }
+}
+
+@media (max-width: 630px){
+  .root__footer {
+    padding: 48px 0 36px;
+    max-width: 282px;
+  }
+}

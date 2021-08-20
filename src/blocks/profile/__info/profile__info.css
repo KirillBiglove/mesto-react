@@ -1,0 +1,18 @@
+.profile__info {
+  max-width: 336px;
+  padding: 0;
+  margin-right: 244px;
+}
+
+@media (max-width: 910px){
+  .profile__info {
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 630px){
+  .profile__info {
+  padding: 0;
+  margin: 26px auto 0;
+  }
+}

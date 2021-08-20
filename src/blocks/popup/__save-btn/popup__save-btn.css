@@ -1,0 +1,28 @@
+.popup__save-btn {
+  display: flex;
+  width: 358px;
+  height: 50px;
+  background-image: url(../../../images/Submit_Button.svg);
+  border: none;
+  outline: none;
+  padding: 0;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.popup__save-btn:hover {
+  opacity: 0.8;
+}
+
+
+@media (max-width: 630px){
+  .popup__save-btn {
+    background-image: url(../../../images/Submit_Button320px.svg);
+    background-repeat: no-repeat;
+    width: 238px;
+    height: 46px;
+    margin: 15px auto 0;
+  }
+}
+
+
