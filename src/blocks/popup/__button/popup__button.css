@@ -1,11 +1,14 @@
-.popup__button:disabled {
-  background-image: url(../../../images/Submit_Button_disabled.svg);
+.popup__button:disabled{
+  background-color: transparent;
+  color:rgba(0, 0, 0, 0.2);
+  border: 1px rgba(0, 0, 0, 0.2) solid;
+  cursor: unset;
 }
 
 
 @media (max-width: 630px){
   .popup__button:disabled {
-    background-image: url(../../../images/Submit_Button_disabled.svg);
+    /* background-image: url(../../../images/Submit_Button_disabled.svg); */
     background-size: 238px 46px;
     background-repeat: no-repeat;
     margin: 15px auto 0;

@@ -1,12 +1,16 @@
 .popup__save-btn {
-  display: flex;
   width: 358px;
   height: 50px;
-  background-image: url(../../../images/Submit_Button.svg);
-  border: none;
-  outline: none;
-  padding: 0;
+  margin: 0;
   margin-top: 30px;
+  padding: 0;
+  background-color: black;
+  color: white;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.78px;
+  border: none;
+  border-radius: 2px;
   cursor: pointer;
 }
 
@@ -14,15 +18,15 @@
   opacity: 0.8;
 }
 
-
-@media (max-width: 630px){
+@media (max-width: 630px) {
   .popup__save-btn {
-    background-image: url(../../../images/Submit_Button320px.svg);
-    background-repeat: no-repeat;
-    width: 238px;
-    height: 46px;
-    margin: 15px auto 0;
+    max-width: 238px;
+    min-height: 46px;
+    margin-top: 45px;
+    margin-left: 22px;
+    margin-right: 22px;
+    margin-bottom: 25px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
-
-
