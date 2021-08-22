@@ -2,7 +2,7 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
 
-function EditProfilePopup() {
+function EditProfilePopup( { isOpen, isClose }) {
     return (
 
         <PopupWithForm
@@ -10,6 +10,9 @@ function EditProfilePopup() {
         name = 'profile'
         title = 'Редактировать профиль'
         buttonText = 'Сохранить'
+
+        isOpen={isOpen}
+        isClose={isClose}
 
         >
 

@@ -12,20 +12,64 @@ import ChangeAvatarPopup from './ChangeAvatarPopup.js';
 
 
 
+
 function App() {
+
+  const [ onEditProfile , isEditProfilePopupOpen] = React.useState(false);
+  const [ onAddPlace, isAddPlacePopupOpen ] = React.useState(false);
+  const [ onEditAvatar, isEditAvatarPopupOpen ] = React.useState(false);
+
+  function handleEditProfileClick() {
+    isEditProfilePopupOpen(true);
+}
+
+function handleAddPlaceClick() {
+    isAddPlacePopupOpen(true);
+}
+
+function handleEditAvatarClick() {
+    isEditAvatarPopupOpen(true);
+} 
+
+function closeAllPopups() {
+  isEditProfilePopupOpen(false);
+  isAddPlacePopupOpen(false);
+  isEditAvatarPopupOpen(false)
+}
 
   return (
     <div className="root">
       <div className="page root__container">
         <Header />
-        <Main />  
+        <Main 
+        
+        onEditProfile = {handleEditProfileClick}
+        onAddPlace = {handleAddPlaceClick}
+        onEditAvatar = {handleEditAvatarClick}
+
+        />  
         <Footer />
       </div>
-      <EditProfilePopup />
-      <AddCardPopup />
+      <EditProfilePopup
+
+        isOpen = {onEditProfile}
+        isClose = {closeAllPopups}
+
+      />
+      <AddCardPopup
+      
+        isOpen = {onAddPlace}
+        isClose = {closeAllPopups}
+
+      />
       <FullImagePopup />
       <DeleteCardPopup />
-      <ChangeAvatarPopup />
+      <ChangeAvatarPopup
+      
+        isOpen = {onEditAvatar}
+        isClose = {closeAllPopups}
+
+      />
     </div>
   );
 }

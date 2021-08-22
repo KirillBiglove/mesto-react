@@ -1,13 +1,16 @@
 import React from 'react'
 import PopupWithForm from './PopupWithForm';
 
-function ChangeAvatarPopup() {
+function ChangeAvatarPopup( { isOpen, isClose }) {
     return (
         <PopupWithForm
         
         name = 'profile-image'
         title = 'Обновить Аватар'
         buttonText = 'Сохранить'
+
+        isOpen = {isOpen}
+        isClose = {isClose}
 
         >
 
