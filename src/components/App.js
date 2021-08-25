@@ -1,25 +1,25 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Header from './Header.js'
 import Main from './Main.js'
 import Footer from './Footer.js'
 import EditProfilePopup from './EditProfilePopup.js';
 import AddCardPopup from './AddCardPopup.js';
-import FullImagePopup from './FullImagePopup.js';
 import DeleteCardPopup from './DeleteCardPopup.js';
 import ChangeAvatarPopup from './ChangeAvatarPopup.js';
-
-
-
-
-
+import ImagePopup from './ImagePopup.js';
 
 function App() {
 
-  const [ onEditProfile , isEditProfilePopupOpen] = React.useState(false);
-  const [ onAddPlace, isAddPlacePopupOpen ] = React.useState(false);
-  const [ onEditAvatar, isEditAvatarPopupOpen ] = React.useState(false);
+  const [ onEditProfile , isEditProfilePopupOpen] = useState(false);
+  const [ onAddPlace, isAddPlacePopupOpen ] = useState(false);
+  const [ onEditAvatar, isEditAvatarPopupOpen ] = useState(false);
+  const [ selectedCard, isSelectedCard ] = useState(false);
 
-  function handleEditProfileClick() {
+function handleCardClick(){
+  isSelectedCard(true);
+}
+
+function handleEditProfileClick() {
     isEditProfilePopupOpen(true);
 }
 
@@ -35,6 +35,7 @@ function closeAllPopups() {
   isEditProfilePopupOpen(false);
   isAddPlacePopupOpen(false);
   isEditAvatarPopupOpen(false)
+  isSelectedCard(false);
 }
 
   return (
@@ -62,8 +63,13 @@ function closeAllPopups() {
         isClose = {closeAllPopups}
 
       />
-      <FullImagePopup />
       <DeleteCardPopup />
+      <ImagePopup 
+      
+      card = {selectedCard}
+      onClose = {closeAllPopups}
+
+      />
       <ChangeAvatarPopup
       
         isOpen = {onEditAvatar}

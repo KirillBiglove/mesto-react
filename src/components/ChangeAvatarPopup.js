@@ -14,7 +14,7 @@ function ChangeAvatarPopup( { isOpen, isClose }) {
 
         >
 
-            <input id="popup__input_type_profile_image" className="popup__input popup__input_type_profile-image" name="link" value="" placeholder="Ссылка на картинку" type="url" required></input>
+            <input id="popup__input_type_profile_image" className="popup__input popup__input_type_profile-image" name="link" defaultValue="" placeholder="Ссылка на картинку" type="url" required></input>
             <span id="popup__input_type_profile_image-error" className="popup__error"></span>
 
         </PopupWithForm> 

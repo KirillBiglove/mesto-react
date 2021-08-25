@@ -1,7 +1,7 @@
-import { useState, useEffect} from 'react';
-import profileAvatar from '../images/cousteau.jpg'
+import { useState, useEffect } from 'react';
 import addButton from '../images/Vector_plus.svg'
 import api from '../utils/Api';
+import Card from './Card';
 
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
@@ -9,9 +9,20 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
     const [ userName, setUserName ] = useState('');
     const [ userDescription, setUserDescription ]= useState('');
     const [ userAvatar, setUserAvatar ] = useState('');
-    
+
+    const [ cards, setCards ] = useState([]);
+
+
     useEffect(() => {
-        api.editProfile( setUserName, setUserDescription)
+      api.getInitialCards()
+      .then((res) => {
+        setCards(res);
+      })
+    }, [])
+
+
+    useEffect(() => {
+        api.editProfile( setUserName, setUserDescription )
         .then((props) =>{
             setUserName(props.name)
             setUserDescription(props.about)
@@ -24,7 +35,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
         <main>
         <section className="profile page__profile">
             <div className="profile__avatar-change-icon">
-                <img className="profile__avatar" src={profileAvatar} style={{ backgroundImage: `url(${userAvatar})` }}  onClick={onEditAvatar} alt="Аватар пользователя"></img>
+                <img className="profile__avatar" src={userAvatar} onClick={onEditAvatar} alt="Аватар пользователя"></img>
             </div>
             <div className="profile__info">
                 <div className="profile__info-container">
@@ -39,7 +50,14 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
         </section>
 
         <section className="elements page__elements">
-            
+        
+        {cards.map(card => 
+        <Card
+
+            card= {card}
+            key = {card._id}
+
+        />)}
         </section>
 
         </main>
