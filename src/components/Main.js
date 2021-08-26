@@ -13,10 +13,13 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
 
 
     useEffect(() => {
-      api.getInitialCards()
-      .then((res) => {
-        setCards(res);
-      })
+        api.getInitialCards()
+        .then((res) => {
+    setCards(res);
+    })
+            .catch((err) => {
+                console.log(err);
+            })
     }, [])
 
 
@@ -26,6 +29,9 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
             setUserName(props.name)
             setUserDescription(props.about)
             setUserAvatar(props.avatar)    
+            })
+            .catch((err) => {
+                console.log(err);
             })
     }, [])
     
@@ -51,13 +57,14 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         <section className="elements page__elements">
         
         {cards.map(card => 
-        <Card
+        (<Card
 
-            card= {card}
+            card = {card}
             key = {card._id}
             onCardClick = {onCardClick}
 
-        />)}
+        />)
+        )}
         </section>
 
         </main>
