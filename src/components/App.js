@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Header from './Header.js'
 import Main from './Main.js'
 import Footer from './Footer.js'
@@ -13,10 +13,11 @@ function App() {
   const [ onEditProfile , isEditProfilePopupOpen] = useState(false);
   const [ onAddPlace, isAddPlacePopupOpen ] = useState(false);
   const [ onEditAvatar, isEditAvatarPopupOpen ] = useState(false);
-  const [ selectedCard, isSelectedCard ] = useState(false);
+  const [ selectedCard, isSelectedCard ] = useState({ name: '', link: ''});
+  
 
-function handleCardClick(){
-  isSelectedCard(true);
+function handleCardClick(selectedCard){
+  isSelectedCard({ name: selectedCard.name, link: selectedCard.link });
 }
 
 function handleEditProfileClick() {
@@ -35,7 +36,7 @@ function closeAllPopups() {
   isEditProfilePopupOpen(false);
   isAddPlacePopupOpen(false);
   isEditAvatarPopupOpen(false)
-  isSelectedCard(false);
+  isSelectedCard({ name: '', link: '' })
 }
 
   return (
@@ -47,6 +48,7 @@ function closeAllPopups() {
         onEditProfile = {handleEditProfileClick}
         onAddPlace = {handleAddPlaceClick}
         onEditAvatar = {handleEditAvatarClick}
+        onCardClick = {handleCardClick}
 
         />  
         <Footer />
@@ -66,6 +68,7 @@ function closeAllPopups() {
       <DeleteCardPopup />
       <ImagePopup 
       
+
       card = {selectedCard}
       onClose = {closeAllPopups}
 

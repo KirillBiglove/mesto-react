@@ -1,14 +1,13 @@
-import { useState, useEffect} from 'react';
-import Main from './Main';
+function Card( {card, onCardClick} ) {
 
-
-function Card( props ) {
-    const { card } = props;
-
+    function handleClick() {
+        onCardClick(card);
+        console.log(card)
+    }
     return (
-        <article className="element">
+        <article className="element" key={card._id}>
         <div className="element__image-container">
-            <img className="element__main-image" src={card.link} alt={card.name}></img>
+            <img className="element__main-image" src={card.link} alt={card.name} onClick={handleClick}></img>
             <button className="element__delete-btn" type="button" aria-label="delete-button"></button>
         </div>
         <div className="element__container">

@@ -4,12 +4,11 @@ import api from '../utils/Api';
 import Card from './Card';
 
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
 
     const [ userName, setUserName ] = useState('');
     const [ userDescription, setUserDescription ]= useState('');
     const [ userAvatar, setUserAvatar ] = useState('');
-
     const [ cards, setCards ] = useState([]);
 
 
@@ -56,6 +55,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
 
             card= {card}
             key = {card._id}
+            onCardClick = {onCardClick}
 
         />)}
         </section>
