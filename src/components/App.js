@@ -32,11 +32,11 @@ function handleEditAvatarClick() {
     isEditAvatarPopupOpen(true);
 } 
 
-function closeAllPopups() {
+function closeAllPopups(){
   isEditProfilePopupOpen(false);
   isAddPlacePopupOpen(false);
   isEditAvatarPopupOpen(false)
-  isSelectedCard({ name: '', link: '' })
+  isSelectedCard({name: '', link: '' })
 }
 
   return (
