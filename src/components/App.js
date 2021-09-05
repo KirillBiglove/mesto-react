@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './Header.js'
 import Main from './Main.js'
 import Footer from './Footer.js'
@@ -7,6 +7,8 @@ import AddCardPopup from './AddCardPopup.js';
 import DeleteCardPopup from './DeleteCardPopup.js';
 import ChangeAvatarPopup from './ChangeAvatarPopup.js';
 import ImagePopup from './ImagePopup.js';
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
+import api from '../utils/Api.js';
 
 function App() {
 
@@ -14,6 +16,18 @@ function App() {
   const [ onAddPlace, isAddPlacePopupOpen ] = useState(false);
   const [ onEditAvatar, isEditAvatarPopupOpen ] = useState(false);
   const [ selectedCard, isSelectedCard ] = useState({ name: '', link: ''});
+  const [ currentUser, setCurrentUser ] = useState({});
+
+  useEffect(() => {
+    api.getUserData()
+    .then((props) => {
+      console.log(props)
+      setCurrentUser(props)
+    })
+        .catch((err) => {
+            console.log(err);
+        })
+}, [])
   
 
 function handleCardClick(selectedCard){
@@ -41,6 +55,7 @@ function closeAllPopups(){
 
   return (
     <div className="root">
+      <CurrentUserContext.Provider value={currentUser}>
       <div className="page root__container">
         <Header />
         <Main 
@@ -79,6 +94,7 @@ function closeAllPopups(){
         isClose = {closeAllPopups}
 
       />
+      </CurrentUserContext.Provider>
     </div>
   );
 }
