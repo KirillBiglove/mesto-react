@@ -11,16 +11,35 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
     const [ cards, setCards ] = useState([]);
 
 
+
+    function handleCardLike(card) {
+        const isLiked = card.likes.some(i => i._id === profileData._id);
+        const changeLike = isLiked ? api.deleteLike(card._id) : api.setLike(card._id)
+        changeLike.then((newCard) => {
+            setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        })
+    } 
+    
+    function handleCardDelete(card) {
+        api.deleteCard(card._id)
+            .then(() => {
+                const newCard = cards.filter((c) => c._id !== card._id);
+                setCards(newCard);
+            })
+            .catch((err) => console.log(err));
+    };
+
     useEffect(() => {
         api.getInitialCards()
         .then((res) => {
-    setCards(res);
+        setCards(res);
     })
             .catch((err) => {
                 console.log(err);
             })
     }, [])
     
+
 
     return (
         <main>
@@ -44,10 +63,12 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         
         {cards.map(card => 
         (<Card
-
+            cardData = {profileData}
             card = {card}
             key = {card._id}
             onCardClick = {onCardClick}
+            onCardLike = {handleCardLike}
+            onCardDelete = {handleCardDelete}
 
         />)
         )}

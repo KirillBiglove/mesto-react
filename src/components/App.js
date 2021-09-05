@@ -21,7 +21,6 @@ function App() {
   useEffect(() => {
     api.getUserData()
     .then((props) => {
-      console.log(props)
       setCurrentUser(props)
     })
         .catch((err) => {
