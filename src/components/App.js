@@ -5,7 +5,7 @@ import Footer from './Footer.js'
 import EditProfilePopup from './EditProfilePopup.js';
 import AddCardPopup from './AddCardPopup.js';
 import DeleteCardPopup from './DeleteCardPopup.js';
-import ChangeAvatarPopup from './ChangeAvatarPopup.js';
+import EditAvatarPopup from './EditAvatarPopup.js';
 import ImagePopup from './ImagePopup.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import api from '../utils/Api.js';
@@ -52,6 +52,18 @@ function closeAllPopups(){
   isSelectedCard({name: '', link: '' })
 }
 
+function handleUpdateUser({ name, about }) {
+  api.editProfile(name, about)
+  .then((res) => {
+    setCurrentUser(res);
+    isEditProfilePopupOpen(false);
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+}
+
+
   return (
     <div className="root">
       <CurrentUserContext.Provider value={currentUser}>
@@ -71,6 +83,7 @@ function closeAllPopups(){
 
         isOpen = {onEditProfile}
         isClose = {closeAllPopups}
+        onUpdateUser = {handleUpdateUser}
 
       />
       <AddCardPopup
@@ -87,7 +100,7 @@ function closeAllPopups(){
       onClose = {closeAllPopups}
 
       />
-      <ChangeAvatarPopup
+      <EditAvatarPopup
       
         isOpen = {onEditAvatar}
         isClose = {closeAllPopups}
