@@ -1,45 +1,12 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import addButton from '../images/Vector_plus.svg'
-import api from '../utils/Api';
 import Card from './Card';
 
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCardLike, onCardDelete }) {
 
     const profileData = useContext(CurrentUserContext);
-    const [ cards, setCards ] = useState([]);
-
-
-
-    function handleCardLike(card) {
-        const isLiked = card.likes.some(i => i._id === profileData._id);
-        const changeLike = isLiked ? api.deleteLike(card._id) : api.setLike(card._id)
-        changeLike.then((newCard) => {
-            setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-        })
-    } 
-    
-    function handleCardDelete(card) {
-        api.deleteCard(card._id)
-            .then(() => {
-                const newCard = cards.filter((c) => c._id !== card._id);
-                setCards(newCard);
-            })
-            .catch((err) => console.log(err));
-    };
-
-    useEffect(() => {
-        api.getInitialCards()
-        .then((res) => {
-        setCards(res);
-    })
-            .catch((err) => {
-                console.log(err);
-            })
-    }, [])
-    
-
 
     return (
         <main>
@@ -67,8 +34,8 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
             card = {card}
             key = {card._id}
             onCardClick = {onCardClick}
-            onCardLike = {handleCardLike}
-            onCardDelete = {handleCardDelete}
+            onCardLike = {onCardLike}
+            onCardDelete = {onCardDelete}
 
         />)
         )}

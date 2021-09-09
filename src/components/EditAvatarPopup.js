@@ -1,9 +1,17 @@
 import React, { createRef } from 'react'
 import PopupWithForm from './PopupWithForm';
 
-function ChangeAvatarPopup( { isOpen, isClose }) {
+function ChangeAvatarPopup( { isOpen, isClose, onUpdateAvatar }) {
 
-    
+    const avatarRef = createRef('');
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        onUpdateAvatar({
+            avatar: avatarRef.current.value
+        });
+        debugger
+    } 
 
     return (
         <PopupWithForm
@@ -14,14 +22,15 @@ function ChangeAvatarPopup( { isOpen, isClose }) {
 
         isOpen = {isOpen}
         isClose = {isClose}
+        onSubmit = {handleSubmit}
 
         >
 
             <input 
             id="popup__input_type_profile_image" 
             className="popup__input popup__input_type_profile-image"
+            ref={avatarRef}
             name="link" 
-            defaultValue="" 
             placeholder="Ссылка на картинку" 
             type="url" 
             required
